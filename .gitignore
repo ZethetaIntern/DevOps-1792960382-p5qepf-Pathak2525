@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+.env.local
+*.log
+.DS_Store
+backup/
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars.secret
+coverage/

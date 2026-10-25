@@ -1,0 +1,9 @@
+output "primary_alb_dns" { value = module.compute_primary.alb_dns_name }
+output "secondary_alb_dns" { value = module.compute_secondary.alb_dns_name }
+output "aurora_global_cluster_id" { value = module.aurora.global_cluster_id }
+output "aurora_primary_endpoint" { value = module.aurora.primary_endpoint }
+output "dynamodb_table" { value = module.dynamodb.table_name }
+output "kafka_primary_brokers" { value = module.kafka_primary.bootstrap_brokers_tls }
+output "kafka_secondary_brokers" { value = module.kafka_secondary.bootstrap_brokers_tls }
+output "redis_primary_endpoint" { value = module.redis_primary.primary_endpoint }
+output "redis_secondary_endpoint" { value = module.redis_secondary.primary_endpoint }

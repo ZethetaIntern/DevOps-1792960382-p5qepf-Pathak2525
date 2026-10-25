@@ -1,0 +1,18 @@
+@media (max-width: 1000px) {
+  .split { grid-template-columns: 1fr; }
+  .runbook-detail { position: static; max-height: none; }
+}
+@media (max-width: 820px) {
+  .sidebar { position: fixed; z-index: 30; left: 0; top: 0; transform: translateX(-100%); transition: transform .2s ease; }
+  .sidebar-open { transform: translateX(0); box-shadow: 0 0 0 100vmax rgba(15, 23, 42, .5); }
+  .menu-btn { display: inline-flex; }
+  .page { padding: 12px; }
+  .two { grid-template-columns: 1fr; }
+  .user-chip { display: none; }
+  .navbar-right .badge { display: none; }
+}
+@media (max-width: 480px) {
+  h2 { font-size: 18px; }
+  .kv { grid-template-columns: 1fr; }
+  .metric-value { font-size: 18px; }
+}

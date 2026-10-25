@@ -1,0 +1,40 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes: [mongo-data:/data/db]
+    ports: ["27017:27017"]
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/Dockerfile
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 5000
+      MONGODB_URI: mongodb://mongo:27017/paysecure_dr
+      FRONTEND_URL: http://localhost:8080,http://localhost:5173
+      JWT_SECRET: ${JWT_SECRET:-docker-dev-secret-change-me-at-least-32-chars}
+      ALLOW_REAL_FAILOVER: "false"
+    depends_on:
+      mongo: { condition: service_healthy }
+    ports: ["5000:5000"]
+
+  frontend:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/frontend.Dockerfile
+      args:
+        VITE_API_URL: http://localhost:5000/api
+    restart: unless-stopped
+    depends_on: [backend]
+    ports: ["8080:80"]
+
+volumes:
+  mongo-data:

@@ -1,0 +1,5 @@
+.badge { padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+.badge.healthy, .badge.primary { background: #dcfce7; color: #166534; }
+.badge.standby { background: #dbeafe; color: #1e40af; }
+.badge.degraded { background: #fef3c7; color: #92400e; }
+.badge.down, .badge.fenced { background: #fee2e2; color: #991b1b; }
